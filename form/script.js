@@ -1,9 +1,16 @@
+
 const form = document.getElementById("form");
+
 const username = document.getElementById("username");
+
 const email = document.getElementById("email");
+
 const phone = document.getElementById("phone");
+
 const password = document.getElementById("password");
+
 const repassword = document.getElementById("repassword");
+
 
 function error(input,massage){
     input.className = "form-control is-invalid"
@@ -12,11 +19,15 @@ function error(input,massage){
     div.className = 'invalid-feedback';
 }
 
+
 function success(input){
+    
     input.className = "form-control is-valid" 
 }
 
+
 function checkEmail(input){
+    
     const re =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     
@@ -26,6 +37,7 @@ function checkEmail(input){
         error(input,"Hatalı Email Adresi")
     }
 }
+
 
 function checkRequired(inputs){
     inputs.forEach(function(input){
@@ -37,6 +49,7 @@ function checkRequired(inputs){
     })
 }
 
+
 function checkLength(input,min,max){
     if(input.value.length < min){
         error(input, `${input.id} En Az ${min} Karakter Girilebilir`)
@@ -47,26 +60,32 @@ function checkLength(input,min,max){
     }
 }
 
+
 function checkPassword(input1,input2){
     if(input1.value !== input2.value){
         error(input2, "Parola Eşleşmiyor")
     }
 }
 
+
 function checkPhone(input){
     let exp = /^\d{10}$/;
+    
     if(!exp.test(input.value)){
         error(input, "Telefon 10 Karakter Olmalıdır")
     }
 }
+
 
 form.addEventListener("submit",function(e){
     e.preventDefault();
 
     checkRequired([username,email,phone,password,repassword]);
     checkEmail(email)
+    
     checkLength(username,6,20)
     checkLength(password,6,30)
+    
     checkPassword(password,repassword)
     checkPhone(phone)
 
